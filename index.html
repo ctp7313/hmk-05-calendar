@@ -39,94 +39,6 @@
             <i class="fas fa-calendar-plus"></i>
           </button>
         </div>
-      </div>
-      <div class="input-group input-group-lg">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="1000">10:00 AM</span>
-        </div>
-        <textarea class="form-control" aria-label="With textarea"></textarea>
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">
-            <i class="fas fa-calendar-plus"></i>
-          </button>
-        </div>
-      </div>
-      <div class="input-group input-group-lg">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="1100">11:00 AM</span>
-        </div>
-        <textarea class="form-control" aria-label="With textarea"></textarea>
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">
-            <i class="fas fa-calendar-plus"></i>
-          </button>
-        </div>
-      </div>
-      <div class="input-group input-group-lg">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="1200">12:00 PM</span>
-        </div>
-        <textarea class="form-control" aria-label="With textarea"></textarea>
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">
-            <i class="fas fa-calendar-plus"></i>
-          </button>
-        </div>
-      </div>
-      <div class="input-group input-group-lg">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="1300">01:00 PM</span>
-        </div>
-        <textarea class="form-control" aria-label="With textarea"></textarea>
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">
-            <i class="fas fa-calendar-plus"></i>
-          </button>
-        </div>
-      </div>
-      <div class="input-group input-group-lg">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="1400">02:00 PM</span>
-        </div>
-        <textarea class="form-control" aria-label="With textarea"></textarea>
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">
-            <i class="fas fa-calendar-plus"></i>
-          </button>
-        </div>
-      </div>
-      <div class="input-group input-group-lg">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="1500">03:00 PM</span>
-        </div>
-        <textarea class="form-control" aria-label="With textarea"></textarea>
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">
-            <i class="fas fa-calendar-plus"></i>
-          </button>
-        </div>
-      </div>
-      <div class="input-group input-group-lg">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="1600">04:00 PM</span>
-        </div>
-        <textarea class="form-control" aria-label="With textarea"></textarea>
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">
-            <i class="fas fa-calendar-plus"></i>
-          </button>
-        </div>
-      </div>
-      <div class="input-group input-group-lg">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="1700">05:00 PM</span>
-        </div>
-        <textarea class="form-control" aria-label="With textarea"></textarea>
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">
-            <i class="fas fa-calendar-plus"></i>
-          </button>
-        </div>
       </div> -->
     </div>
 
@@ -136,54 +48,57 @@
       $(document).ready(function () {
         var todaysDate = moment();
 
-        // var saveButton = "";
-        // var appointmentNote = """";
-        // var appointmentTime = ;
-
         $("#currentDay").text(
           "Today's date is " + todaysDate.format("dddd, MMMM Do, YYYY")
         );
-        // console.log(todaysDate.format(YYYY - MM));
+        console.log(todaysDate.format("YYYY-MM"));
 
         for (var i = 0; i < 9; i++) {
           let hour = i + 9;
           // var timeSlot = i > 12 ? i - 12 : i;
-          $("<div/>", { class: "input-group input-group-lg" })
+          $("<div/>", {
+            class: "input-group input-group-lg",
+          })
             .append([
-              $("<div/>", { class: "input-group-prepend" }).append([
+              $("<div/>", {
+                "class": "input-group-prepend",
+              }).append([
                 $("<span/>", {
-                  class: "input-group-text",
-                  id: i,
-                  text: moment().hour(hour).format("hh:00"),
+                  "class": "input-group-text",
+                  "id": i,
+                  "text": moment().hour(hour).format("hh:00"),
                 }),
               ]),
-              $("<textarea/>", {
-                class: "form-control",
-                "aria-label": "With textarea",
+              $("<input/>", {
+                "class": "form-control",
+                "type": "apptNote",
+                "id": "appt" + i,
               }),
               $("<div/>", { class: "input-group-append" }).append([
                 $("<button/>", {
-                  class: "btn btn-outline-secondary",
-                  id: "button"+i,
-                  type: "button",
-                  click: save,
+                  "class": "btn btn-outline-secondary",
+                  "id": "button" + i,
+                  "type": "button",
+                  "click": save,
                 }).append([$("<i/>", { class: "fas fa-calendar-plus" })]),
               ]),
             ])
             .appendTo(".container");
         }
+
+        function save() {
+          var apptText = 
+          var apptTime = todaysDate.format("YYYY-MM");
+          alert("Your appointment has been saved!");
+          localStorage.setItem(, apptText);
+          //cannot seem to get figure out how best to call a string of text and save with the associated id of another element.
+          //Ideally I am to localstorage an hour of a day (key) with a note as a string (value). 
+        }
       });
 
-      function save() {
-        alert("Your appointment has been saved!");
-      }
-      // localStorage.setItem('myCat', 'Tom');
-      // var cat = localStorage.getItem('myCat');
+
 
       // localStorage.clear();
-
-      //When the document is loaded
-      //Replace text for #current day with today's date
     </script>
   </body>
 </html>
